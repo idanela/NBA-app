@@ -1,0 +1,22 @@
+version: "3"
+
+services:
+
+  nameOfContainer:
+    image:nameOfImage
+    networks:
+      -nameOfNetwork
+    ports:
+      - 8080:8080
+    depends_on:
+      - database
+
+  database:
+    image:mongo:4
+    networks:
+      -nameOfNetwork
+
+networks:
+  nameOfNetwork:
+
+
