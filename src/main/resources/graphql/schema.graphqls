@@ -1,0 +1,32 @@
+type Query
+{
+    players:[Player]
+    playerByName (name:String):Player
+}
+
+type Player
+{
+    id:ID
+    name: String
+    height:String
+    weight:String
+    collage:String
+    born:String
+    birth_city:String
+    birth_state:String
+    club:Club
+}
+
+type Club
+{
+    abbreviation:ID
+    teamName:String
+    simpleName:String
+    location:String
+    conference:String
+}
+
+type Mutation
+{
+    changeWeight(name:String,weight:String):String
+}
