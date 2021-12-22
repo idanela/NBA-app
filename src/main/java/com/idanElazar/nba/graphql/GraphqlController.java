@@ -1,6 +1,5 @@
 package com.idanElazar.nba.graphql;
 
-import com.idanElazar.nba.club.Club;
 import com.idanElazar.nba.player.BasketballPlayer;
 import com.idanElazar.nba.player.PlayerService;
 import org.springframework.beans.factory.annotation.Autowired;

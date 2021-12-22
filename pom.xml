@@ -34,6 +34,12 @@
 			<scope>test</scope>
 		</dependency>
 
+		<dependency>
+			<groupId>com.h2database</groupId>
+			<artifactId>h2</artifactId>
+			<scope>test</scope>
+		</dependency>
+
 		<!-- https://mvnrepository.com/artifact/org.mongodb/mongodb-driver-core -->
 		<dependency>
 			<groupId>org.mongodb</groupId>
@@ -59,7 +65,7 @@
 			<artifactId>graphql-spring-boot-starter</artifactId>
 			<version>1.0.0-M3</version>
 		</dependency>
-		
+
 	</dependencies>
 
 	<build>
@@ -67,6 +73,17 @@
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
+				<executions>
+					<execution>
+						<goals>
+							<goal>repackage</goal>
+						</goals>
+						<configuration>
+							<mainClass>com.idanElazar.nba.NbaApplication</mainClass>
+							<outputDirectory>docker</outputDirectory>
+						</configuration>
+					</execution>
+				</executions>
 			</plugin>
 		</plugins>
 	</build>

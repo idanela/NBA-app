@@ -30,7 +30,10 @@ public class BasketBallPlayerService implements PlayerService {
 
     @Override
     public void addPlayer(BasketballPlayer basketballPlayer) {
-        playerRepository.save(basketballPlayer);
+        if(!playerRepository.existsByName(basketballPlayer.getName()))
+            playerRepository.save(basketballPlayer);
+        else
+            throw new IllegalStateException("Player with name " +basketballPlayer.getName() +" already exists");
     }
 
     @Override

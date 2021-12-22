@@ -1,0 +1,26 @@
+version: '3.1'
+
+services:
+
+  mongo:
+    image: mongo
+    networks:
+      - nba-network
+    ports:
+      - "27017:27017"
+    restart: always
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: myUserAdmin
+      MONGO_INITDB_ROOT_PASSWORD: abc123
+      
+  nba-api:
+    image: nba-api
+    ports:
+      - "8080:8080"
+    networks:
+      - nba-network
+    restart: on-failure
+    depends_on:
+      - mongo
+networks:
+    nba-network:

@@ -3,7 +3,7 @@ package com.idanElazar.nba.stats;
 import com.idanElazar.nba.club.Club;
 import com.idanElazar.nba.club.ClubService;
 import com.idanElazar.nba.player.BasketballPlayer;
-import com.idanElazar.nba.player.BasketBallPlayerService;
+import com.idanElazar.nba.player.PlayerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,18 +13,18 @@ import java.util.stream.Collectors;
 @Service
 public class StatsService {
 
-    private final BasketBallPlayerService basketBallPlayerService;
+    private final PlayerService playerService;
     private final ClubService clubService;
 
     @Autowired
-    public StatsService(BasketBallPlayerService basketBallPlayerService, ClubService clubService) {
-        this.basketBallPlayerService = basketBallPlayerService;
+    public StatsService(PlayerService playerService, ClubService clubService) {
+        this.playerService = playerService;
         this.clubService = clubService;
     }
 
     public List<BasketballPlayer> getPlayerWithSameTeam(String clubId) {
           Club club = clubService.getClub(clubId);
-        List<BasketballPlayer> players = basketBallPlayerService.getPlayersList();
+        List<BasketballPlayer> players = playerService.getPlayersList();
         return players.stream().filter((player)->player.getClub().equals(club)).collect(Collectors.toList());
     }
 
@@ -35,6 +35,6 @@ public class StatsService {
             throw new IllegalStateException("There are only to conferences: east and west.");
         }
         List<Club> sameConferenceClubs = clubService.getMultiClubs().stream().filter((club -> club.getConference().equals(checkedConference))).collect(Collectors.toList());
-        return basketBallPlayerService.getPlayersList().stream().filter(basketballPlayer -> sameConferenceClubs.contains(basketballPlayer.getClub())).collect(Collectors.toList());
+        return playerService.getPlayersList().stream().filter(player -> sameConferenceClubs.contains(player.getClub())).collect(Collectors.toList());
     }
 }
