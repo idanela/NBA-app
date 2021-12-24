@@ -4,6 +4,8 @@ services:
 
   mongo:
     image: mongo
+    volumes:
+      - './data:/data/db'
     networks:
       - nba-network
     ports:
@@ -12,7 +14,7 @@ services:
     environment:
       MONGO_INITDB_ROOT_USERNAME: myUserAdmin
       MONGO_INITDB_ROOT_PASSWORD: abc123
-      
+
   nba-api:
     image: nba-api
     ports:
